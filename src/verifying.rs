@@ -134,8 +134,7 @@ impl VerifyingKey {
         bits[31] &= 127;
         bits[31] |= 64;
 
-        let scalar = Scalar::from_bits(*bits);
-        let point = EdwardsPoint::mul_base(&scalar);
+        let point = EdwardsPoint::mul_base(&Scalar::from_bits(*bits));
         let compressed = point.compress();
 
         VerifyingKey(compressed, point)
